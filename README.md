@@ -8,9 +8,9 @@
 Este proyecto utiliza una aplicación Shiny en R para analizar datos sobre programas de Netflix. La aplicación responde a dos preguntas interesantes sobre el conjunto de datos de programas de Netflix  1. ¿Cuál es la distribución de programas por tipo (TV Show o Movie)?,
 2. ¿Cuál es el país con más programas en Netflix? y ademas permite generar un archivo de Excel con información relevante.
 
-## Conjunto de Datos
+## Conjunto de datos
 
-Se utiliza el conjunto de datos de programas de Netflix que se encuentra en el siguiente enlace: [TidyTuesday Netflix Programs Data](https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-04-20). Este conjunto de datos incluye información sobre programas disponibles en Netflix.
+Se utiliza el conjunto de datos de programas de Netflix que se encuentra en el siguiente enlace: [TidyTuesday Netflix Programs Data](https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-04-20). Este conjunto de datos incluye información sobre programas disponibles en Netflix.![Dataset](https://github.com/mariangigena/R-Shiny-Netflix/blob/main/netflix_titles.csv)
 
 ## Puntos Clave de la Aplicación
 
@@ -25,16 +25,17 @@ Se utiliza el conjunto de datos de programas de Netflix que se encuentra en el s
 5.`Adherencia al Tidyverse Style Guide`: El código sigue los principios de DRY (Don't Repeat Yourself) y es legible, utilizando funciones del tidyverse de manera eficiente para manipulaciones de datos.
 
 
-## Codigo de la Aplicación
+## Codigo de la Aplicación 
+![App](https://github.com/mariangigena/R-Shiny-Netflix/blob/main/app.R)
 
 ```
 library(shiny)
 library(tidyverse)
 library(plotly)
 library(DT)
-library(openxlsx)  # Nueva adición para cargar openxlsx
+library(openxlsx) 
 
-# Cargar el conjunto de datos de programas de Netflix
+
 netflix_data <- readr::read_csv("C:/Users/maria/OneDrive/Escritorio/RStudio/netflix_titles.csv")
 
 # Pregunta 1: ¿Cuál es la distribución de programas por tipo (TV Show o Movie)?
@@ -88,7 +89,7 @@ server <- function(input, output) {
   output$downloadData <- downloadHandler(
     filename = function() { paste("netflix_programs_data_", Sys.Date(), ".xlsx", sep = "") },
     content = function(file) {
-      write.xlsx(netflix_data, file)  # Utiliza write.xlsx de openxlsx
+      write.xlsx(netflix_data, file)  
     }
   )
 }
